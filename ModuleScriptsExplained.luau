@@ -201,13 +201,8 @@ Players.PlayerRemoving:Connect(ClientService.PlayerRemoving);
 -- Ensure players save data even if game shuts down
 game:BindToClose(function()
 	-- Because both the Data object and the Player object are redirected to in the __index method of ClientObject, they can be directly referenced and called as methods cleaning this final portion of the code.
-	for _, client: Client in pairs(ClientService:GetClients()) do
-
-		-- BindToClose waits for all functions to come to a close, if one causes a problem it will wait until it is resolved. To speed this up, thread the saves.
-		task.spawn(function()
-			client:Save();
-			client:Kick();
-		end);
+	for userId, client: Client in pairs(Active) do
+		client:Save();
 	end
 end)
 
