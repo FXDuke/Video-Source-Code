@@ -5,18 +5,27 @@ I.e; ClientService, Client (modulescript inherited to ClientService), and Data (
 
 -- TypeDef
 export type DataValues = {
+	-- Members
 	level: number,
 	xp: number
 };
 
 export type DataObject = {
+	-- Members
 	userId: number,
-	values: DataValues
+	values: DataValues,
+	
+	-- Methods
+	Save: () -> nil,
 };
 
 export type Client = {
+	-- Members
 	client: Player, 
 	data: Data,
+	
+	-- Methods
+	GetCharacter: () -> Model,
 };
 
 -- Constants
