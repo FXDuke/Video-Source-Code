@@ -84,14 +84,8 @@ end
 
 -- Saves data to data store
 function DataObject:Save()
-	-- Rawget is the same as indexing something, it just bypasses the __index method
-	
 	-- If the data has already been saved, and for some reason this is called again, it will not clog the data store save async queue.
 	if (self.saved) then return end;
-	
-	-- Get data for storage
-	local userId = rawget(self, "userId");
-	local saveData = rawget(self, "values");
 	
 	-- Save data
 	DataStore:SetAsync(self.userId, self.values);
