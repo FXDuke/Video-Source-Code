@@ -1,5 +1,5 @@
 --[[
-This file is only relative to part 1 of the tutorial. In later parts, it is broken into multiple module scripts for improved readability.
+This file is only relevant to part 1 of the tutorial. In later parts, it is broken into multiple module scripts for improved readability.
 I.e; ClientService, Client (modulescript inherited to ClientService), and Data (modulescript inherited to Client)
 ]]
 
