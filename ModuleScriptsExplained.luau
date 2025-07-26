@@ -69,7 +69,7 @@ function DataObject:__index(key)
 	return rawget(self, key);
 end
 
-function DataObject:__newIndex(key, value)
+function DataObject:__newindex(key, value)
 	-- If the data has already been saved, make it so it cannot be updated after that
 	if (self.saved) then return end;
 	
@@ -137,7 +137,7 @@ function ClientObject:__index(key)
 	return rawget(self, key);
 end
 
-function ClientObject:__newIndex(key, value)
+function ClientObject:__newindex(key, value)
 	-- If the key exists as a member of the data object, update that member
 	if (self.data[key]) then 
 		self.data[key] = value; 
