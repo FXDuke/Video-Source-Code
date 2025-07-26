@@ -1,5 +1,5 @@
 --[[
-This file is only relevant to part 1 of the tutorial. In later parts, it is broken into multiple module scripts for improved readability.
+This file is only relative to part 1 of the tutorial. In later parts, it is broken into multiple module scripts for improved readability.
 I.e; ClientService, Client (modulescript inherited to ClientService), and Data (modulescript inherited to Client)
 ]]
 
@@ -202,8 +202,12 @@ Players.PlayerRemoving:Connect(ClientService.PlayerRemoving);
 game:BindToClose(function()
 	-- Because both the Data object and the Player object are redirected to in the __index method of ClientObject, they can be directly referenced and called as methods cleaning this final portion of the code.
 	for _, client: Client in pairs(ClientService:GetClients()) do
-		client:Save();
-		client:Kick();
+
+		-- BindToClose waits for all functions to come to a close, if one causes a problem it will wait until it is resolved. To speed this up, thread the saves.
+		task.spawn(function()
+			client:Save();
+			client:Kick();
+		end);
 	end
 end)
 
